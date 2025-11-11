@@ -1,13 +1,23 @@
-# Conference Room Design Service
+# Cannabis Security Compliance Service
 
-**Live Site:** https://design.callordut.com  
+**Live Site:** https://security.callordut.com  
 **Framework:** Next.js 14 + Tailwind CSS  
 **Deployment:** Vercel (auto-deploy)
 
-## Service Tiers
-- Essential Small Room: $2,500 (8-12 people, 3-day delivery)
-- Professional Medium Room: $4,500 (12-20 people, 5-day delivery)  
-- Enterprise Complex Room: $8,000 (20+ people, 7-day delivery)
+## Service Overview
+State-compliant cannabis facility security design for Colorado, New Mexico, and Arizona. 
+
+- Free 30-minute compliance assessment
+- Fixed-price quotes within 48 hours
+- Partner-backed execution (Eagle Eye Networks / Brivo)
+- Average approval time: 18 days
+- Zero failed inspections
+
+## Target Facilities
+- Cultivation (small & large)
+- Dispensary / Retail
+- Processing / Manufacturing  
+- Multi-site operations
 
 ## Status
-🚧 Under construction - launching Nov 8, 2025
+🚧 Under construction - launching Nov 2025
