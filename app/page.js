@@ -29,7 +29,7 @@ export default function HomePage() {
 
           {/* Right: Call + CTA */}
           <div className="hidden md:flex items-center gap-3">
-            
+            <a
               href="tel:+15052261457"
               className="rounded-xl border border-brand-teal/30 px-3 py-2 text-sm font-semibold text-brand-teal hover:bg-brand-teal/10"
             >
@@ -80,7 +80,9 @@ export default function HomePage() {
               Pass Your Cannabis Facility Inspection — First Time, On Schedule
             </h1>
             <p className="text-lg md:text-xl text-white/90">
-              State-compliant security design for Colorado, New Mexico, and Arizona cultivation and dispensary operators. We handle the compliance complexity so you can focus on your license.
+              State-compliant security design for Colorado, New Mexico, and
+              Arizona cultivation and dispensary operators. We handle the
+              compliance complexity so you can focus on your license.
             </p>
           </div>
 
@@ -118,7 +120,8 @@ export default function HomePage() {
                     className="w-full h-56 md:h-72 object-cover"
                     loading="eager"
                     onError={(e) => {
-                      e.target.src = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Crect fill='%230f766e' width='1200' height='800'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23fff' font-size='24' font-family='system-ui'%3ECannabis Security System%3C/text%3E%3C/svg%3E";
+                      e.target.src =
+                        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Crect fill='%230f766e' width='1200' height='800'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23fff' font-size='24' font-family='system-ui'%3ECannabis Security System%3C/text%3E%3C/svg%3E";
                     }}
                   />
                 </figure>
@@ -141,7 +144,8 @@ export default function HomePage() {
               Why Most Cannabis Security Installations Fail Inspection
             </h2>
             <p className="text-gray-600 mt-2">
-              State regulators are strict. These three mistakes account for 80% of compliance failures.
+              State regulators are strict. These three mistakes account for 80% of
+              compliance failures.
             </p>
           </div>
 
@@ -168,18 +172,20 @@ export default function HomePage() {
                 className="rounded-2xl border border-red-200 bg-red-50 p-6 shadow-sm"
               >
                 <div className="text-4xl mb-3">{item.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">
+                  {item.title}
+                </h3>
                 <p className="text-gray-700">{item.desc}</p>
               </div>
             ))}
           </div>
 
           <div className="mt-8 text-center">
-            
+            <a
               href="#assessment"
               className="inline-flex items-center justify-center rounded-xl bg-brand-teal px-6 py-3 font-semibold text-white hover:opacity-90"
             >
-              Let's Make Sure You're Covered →
+              {"Let's Make Sure You're Covered →"}
             </a>
           </div>
         </div>
@@ -194,37 +200,44 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            {[
-              {
-                step: "1",
-                title: "Free Assessment Call",
-                time: "30 minutes",
-                desc: "We review your floor plans, current equipment, and state requirements. You get a compliance gap analysis on the call.",
-              },
-              {
-                step: "2",
-                title: "Fixed-Price Quote",
-                time: "48 hours",
-                desc: "We send a detailed scope covering exactly what's needed to pass inspection. You approve before we start.",
-              },
-              {
-                step: "3",
-                title: "Partner-Backed Execution",
-                time: "2-4 weeks",
-                desc: "Our Eagle Eye/Brivo design teams build your system. We manage the install and prep your documentation for regulators.",
-              },
-            ].map((item) => (
-              <div key={item.step} className="text-center">
-                <div className="mx-auto w-16 h-16 rounded-full bg-brand-teal text-white flex items-center justify-center text-2xl font-bold mb-4">
-                  {item.step}
-                </div>
-                <h3 className="text-xl font-bold text-gray-900 mb-1">{item.title}</h3>
-                <p className="text-sm text-brand-teal font-semibold mb-3">{item.time}</p>
-                <p className="text-gray-700">{item.desc}</p>
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+          {[
+            {
+              step: "1",
+              title: "Free Assessment Call",
+              time: "30 minutes",
+              desc:
+                "We review your floor plans, current equipment, and state requirements. You get a compliance gap analysis on the call.",
+            },
+            {
+              step: "2",
+              title: "Fixed-Price Quote",
+              time: "48 hours",
+              desc:
+                "We send a detailed scope covering exactly what's needed to pass inspection. You approve before we start.",
+            },
+            {
+              step: "3",
+              title: "Partner-Backed Execution",
+              time: "2-4 weeks",
+              desc:
+                "Our Eagle Eye/Brivo design teams build your system. We manage the install and prep your documentation for regulators.",
+            },
+          ].map((item) => (
+            <div key={item.step} className="text-center">
+              <div className="mx-auto w-16 h-16 rounded-full bg-brand-teal text-white flex items-center justify-center text-2xl font-bold mb-4">
+                {item.step}
               </div>
-            ))}
-          </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-1">
+                {item.title}
+              </h3>
+              <p className="text-sm text-brand-teal font-semibold mb-3">
+                {item.time}
+              </p>
+              <p className="text-gray-700">{item.desc}</p>
+            </div>
+          ))}
+        </div>
 
           <div className="mt-10 max-w-2xl mx-auto bg-green-50 border-l-4 border-green-500 p-4 text-center">
             <p className="font-semibold text-gray-900">Our Guarantee</p>
@@ -286,19 +299,19 @@ export default function HomePage() {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
             <Objection
-              q='"Can't I just buy equipment and install it myself?"'
+              q={'"Can\'t I just buy equipment and install it myself?"'}
               a="You can—but if it doesn't meet state-specific retention, resolution, or integration requirements, you'll fail inspection and lose weeks rebuilding. We ensure compliance before equipment is ordered."
             />
             <Objection
-              q='"What if I already have cameras installed?"'
+              q={'"What if I already have cameras installed?"'}
               a="We evaluate your existing setup during the assessment call. Often we can integrate what you have and just add compliance layers (biometrics, retention servers, state tracking integration)."
             />
             <Objection
-              q='"How much does this cost?"'
+              q={'"How much does this cost?"'}
               a="Depends on your facility size and current state. Small dispensaries typically run $25K-$50K all-in. Large cultivation operations $100K-$200K. We quote exactly after the assessment call."
             />
             <Objection
-              q='"Do you install in my state?"'
+              q={'"Do you install in my state?"'}
               a="We currently serve Colorado, New Mexico, and Arizona. If you're expanding to other legal states, we can coordinate through our partner network."
             />
           </div>
@@ -314,7 +327,7 @@ export default function HomePage() {
           <p className="text-lg text-white/90 mb-8">
             30-minute call. No obligation. Fixed-price quote within 48 hours if you want to proceed.
           </p>
-          
+          <a
             href="#assessment"
             className="inline-flex items-center justify-center rounded-xl bg-white px-8 py-4 text-lg font-semibold text-brand-teal hover:bg-gray-100"
           >
