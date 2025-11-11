@@ -381,16 +381,21 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Footer */}
-      <footer className="bg-white">
-        <div className="container-custom py-8 text-sm text-gray-700">
-          <div className="mb-2">Licensed &amp; Insured • Colorado • New Mexico • Arizona</div>
-          © {new Date().getFullYear()} CalLord Unified Technologies • Albuquerque, NM •{" "}
-          <a href="tel:+15052261457" className="text-brand-teal font-semibold">
-            (505) 226-1457
-          </a>
-        </div>
-      </footer>
+     {/* Footer */}
+<footer className="bg-white">
+  <div className="container-custom max-w-5xl mx-auto py-8 text-sm text-gray-700 text-center">
+    <div className="mb-2">
+      Licensed &amp; Insured • Colorado • New Mexico • Arizona
+    </div>
+    <div>
+      © {new Date().getFullYear()} CalLord Unified Technologies • Albuquerque, NM •{" "}
+      <a href="tel:+15052261457" className="text-brand-teal font-semibold">
+        (505) 226-1457
+      </a>
+    </div>
+  </div>
+</footer>
+
     </main>
   );
 }
