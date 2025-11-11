@@ -1,9 +1,73 @@
 // app/page.js
 import Image from "next/image";
 import Link from "next/link";
-import { CalendarDays, Fingerprint, AlertTriangle, Phone, FileText, Settings, Star, ChevronRight } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
 
+/* ---------- Inline Icons (no external deps) ---------- */
+const Icon = ({ children, className = "w-5 h-5" }) => (
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
+       strokeLinecap="round" strokeLinejoin="round" className={className}>
+    {children}
+  </svg>
+);
+const CalendarDays = (p) => (
+  <Icon {...p}>
+    <rect x="3" y="4" width="18" height="18" rx="2" />
+    <line x1="16" y1="2" x2="16" y2="6" />
+    <line x1="8" y1="2" x2="8" y2="6" />
+    <line x1="3" y1="10" x2="21" y2="10" />
+    <rect x="7" y="14" width="3" height="3" />
+    <rect x="14" y="14" width="3" height="3" />
+  </Icon>
+);
+const Fingerprint = (p) => (
+  <Icon {...p}>
+    <path d="M12 11a4 4 0 0 1 4 4v2" />
+    <path d="M12 7a8 8 0 0 1 8 8v2" />
+    <path d="M12 15a8 8 0 0 1-8 8" />
+    <path d="M12 3a12 12 0 0 1 12 12v2" />
+    <path d="M2 21a12 12 0 0 0 12-12" />
+  </Icon>
+);
+const AlertTriangle = (p) => (
+  <Icon {...p}>
+    <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+    <line x1="12" y1="9" x2="12" y2="13" />
+    <line x1="12" y1="17" x2="12.01" y2="17" />
+  </Icon>
+);
+const Phone = (p) => (
+  <Icon {...p}>
+    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72c.12.86.3 1.7.54 2.5a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.58-1.54a2 2 0 0 1 2.11-.45c.8.24 1.64.42 2.5.54A2 2 0 0 1 22 16.92z" />
+  </Icon>
+);
+const FileText = (p) => (
+  <Icon {...p}>
+    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+    <polyline points="14 2 14 8 20 8" />
+    <line x1="16" y1="13" x2="8" y2="13" />
+    <line x1="16" y1="17" x2="8" y2="17" />
+    <line x1="10" y1="9" x2="8" y2="9" />
+  </Icon>
+);
+const Settings = (p) => (
+  <Icon {...p}>
+    <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
+    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06A2 2 0 1 1 4.2 17l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06A2 2 0 1 1 6.04 4.2l.06.06a1.65 1.65 0 0 0 1.82.33h0A1.65 1.65 0 0 0 9.43 3H9.5a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06A2 2 0 1 1 19.8 6.04l-.06.06a1.65 1.65 0 0 0-.33 1.82v0A1.65 1.65 0 0 0 21 9.43V9.5a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+  </Icon>
+);
+const Star = (p) => (
+  <Icon {...p}>
+    <polygon points="12 2 15 9 22 9 17 14 19 21 12 17 5 21 7 14 2 9 9 9 12 2" />
+  </Icon>
+);
+const ChevronRight = (p) => (
+  <Icon {...p}>
+    <polyline points="9 18 15 12 9 6" />
+  </Icon>
+);
+
+/* ---------- Metadata ---------- */
 export const metadata = {
   title: "Cannabis Facility Security Compliance | CalLord Unified Technologies",
   description:
@@ -23,7 +87,6 @@ export default function HomePage() {
       {/* Header */}
       <header className="w-full bg-brand-beige/95 border-b border-brand-sage/40">
         <div className="container-custom px-6 md:px-8 flex items-center justify-between py-3">
-          {/* Left: Logo (scaled down for tighter fold) */}
           <Link href="https://callordut.com" className="flex items-center gap-3" aria-label="CalLord Unified Technologies home">
             <Image
               src="/logo.png"
@@ -34,8 +97,6 @@ export default function HomePage() {
               className="h-16 md:h-20 w-auto"
             />
           </Link>
-
-          {/* Right: Call + CTA (aligned to logo baseline) */}
           <div className="hidden md:flex items-center gap-3">
             <a
               href="tel:+15052261457"
@@ -57,28 +118,22 @@ export default function HomePage() {
       {/* Hero */}
       <section className="relative overflow-hidden bg-gradient-to-b from-brand-teal to-brand-teal/85 text-white">
         <div className="container-custom px-4 md:px-6 py-10 md:py-16">
-          {/* Trust bar ABOVE headline (slightly smaller to emphasize H1) */}
+          {/* Trust bar */}
           <div className="text-center mb-6">
             <div className="flex flex-wrap justify-center items-center gap-6 text-xs md:text-sm text-white/90">
               <div className="flex items-center gap-2">
                 <span className="text-xl">✓</span>
-                <span>
-                  Trusted by <strong>14</strong> licensed facilities
-                </span>
+                <span>Trusted by <strong>14</strong> licensed facilities</span>
               </div>
               <div className="hidden sm:block w-px h-6 bg-white/30" />
               <div className="flex items-center gap-2">
                 <span className="text-xl">✓</span>
-                <span>
-                  Average approval: <strong>18 days</strong>
-                </span>
+                <span>Average approval: <strong>18 days</strong></span>
               </div>
               <div className="hidden sm:block w-px h-6 bg-white/30" />
               <div className="flex items-center gap-2">
                 <span className="text-xl">✓</span>
-                <span>
-                  <strong>Zero</strong> failed inspections
-                </span>
+                <span><strong>Zero</strong> failed inspections</span>
               </div>
             </div>
           </div>
@@ -103,7 +158,7 @@ export default function HomePage() {
 
           {/* Form row */}
           <div id="assessment" className="mt-10 grid md:grid-cols-2 gap-10 items-start">
-            {/* Left column: bullets + hero image */}
+            {/* Left column */}
             <div className="order-2 md:order-1 text-white/95">
               <ul className="space-y-3 text-base md:text-lg leading-7">
                 {[
@@ -119,7 +174,7 @@ export default function HomePage() {
                 ))}
               </ul>
 
-              {/* Photo under bullets (soft card with gradient overlay for legibility) */}
+              {/* Photo */}
               <div className="mt-8">
                 <figure className="rounded-xl overflow-hidden shadow-lg shadow-black/20 ring-1 ring-white/10">
                   <div className="relative">
@@ -158,7 +213,7 @@ export default function HomePage() {
               </div>
             </div>
 
-            {/* Right column: form (card styling for definition) */}
+            {/* Right column: form */}
             <div className="order-1 md:order-2">
               <div className="rounded-xl bg-white shadow-lg shadow-black/10 ring-1 ring-brand-sage/20 p-4 md:p-5">
                 <LeadForm />
@@ -168,7 +223,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Problem Section (icon set + softer alert tint) */}
+      {/* Problem Section */}
       <section id="problem" className="section-padding bg-white">
         <div className="container-custom">
           <div className="text-center mb-8 md:mb-10">
@@ -219,21 +274,21 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <StepCard
               step="1"
-              icon={<Phone className="w-5 h-5" />}
+              icon={<Phone />}
               title="Free Assessment Call"
               time="30 minutes"
               desc="We review your floor plans, current equipment, and state requirements. You get a compliance gap analysis on the call."
             />
             <StepCard
               step="2"
-              icon={<FileText className="w-5 h-5" />}
+              icon={<FileText />}
               title="Fixed-Price Quote"
               time="48 hours"
               desc="We send a detailed scope covering exactly what's needed to pass inspection. You approve before we start."
             />
             <StepCard
               step="3"
-              icon={<Settings className="w-5 h-5" />}
+              icon={<Settings />}
               title="Partner-Backed Execution"
               time="2–4 weeks"
               desc="Our Eagle Eye/Brivo design teams build your system. We manage the install and prep your documentation for regulators."
@@ -249,7 +304,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Testimonials (avatars + attributions) */}
+      {/* Testimonials */}
       <section className="section-padding bg-white">
         <div className="container-custom">
           <div className="text-center mb-8 md:mb-10">
@@ -259,24 +314,24 @@ export default function HomePage() {
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <Testimonial
               initials="DG"
-              quote='“Passed Colorado MED inspection on first try. Mark knew exactly what the inspectors would look for.”'
+              quote="“Passed Colorado MED inspection on first try. Mark knew exactly what the inspectors would look for.”"
               location="Operations Manager, Cultivation facility — Denver"
             />
             <Testimonial
               initials="AL"
-              quote='“We were 3 weeks from license deadline and our system wasn’t compliant. Mark got us approved in 12 days.”'
+              quote="“We were 3 weeks from license deadline and our system wasn’t compliant. Mark got us approved in 12 days.”"
               location="Owner, Dispensary — Albuquerque"
             />
             <Testimonial
               initials="SP"
-              quote='“Worth every dollar to not deal with the regulatory maze ourselves. System works flawlessly.”'
+              quote="“Worth every dollar to not deal with the regulatory maze ourselves. System works flawlessly.”"
               location="Multi-site operator — Phoenix"
             />
           </div>
         </div>
       </section>
 
-      {/* FAQ / Objections (reordered for buyer flow) */}
+      {/* FAQ */}
       <section className="section-padding bg-white border-y border-brand-sage/40">
         <div className="container-custom">
           <h2 className="text-3xl font-bold text-center mb-12">Common Questions, Answered</h2>
@@ -302,7 +357,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Final CTA (higher-contrast button) */}
+      {/* Final CTA */}
       <section className="section-padding bg-gradient-to-b from-brand-teal to-brand-teal/85 text-white text-center">
         <div className="container-custom max-w-3xl">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
