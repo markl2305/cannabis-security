@@ -1,0 +1,36 @@
+/* app/globals.css */
+
+/* If you use Tailwind, keep these at top */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Base colors to avoid white-on-white text issues */
+html, body {
+  background: #ffffff;
+  color: #0f172a; /* slate-900 */
+}
+
+/* Ensure form controls render dark text even in dark mode/autofill */
+input,
+textarea,
+select {
+  background-color: #ffffff;
+  color: #0f172a;
+}
+
+/* Prevent white text on white background during Chrome/Safari autofill */
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  -webkit-text-fill-color: #0f172a !important;
+  transition: background-color 9999s ease-out 0s;
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+}
+button:disabled {
+  cursor: not-allowed;
+}
