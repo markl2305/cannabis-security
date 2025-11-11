@@ -381,9 +381,9 @@ export default function HomePage() {
         </div>
       </section>
 
-     {/* Footer */}
+ {/* Footer */}
 <footer className="bg-white">
-  <div className="container-custom max-w-5xl mx-auto py-8 text-sm text-gray-700 text-center">
+  <div className="mx-auto max-w-5xl px-4 py-8 text-sm text-gray-700 text-center">
     <div className="mb-2">
       Licensed &amp; Insured • Colorado • New Mexico • Arizona
     </div>
