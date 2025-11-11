@@ -1,27 +1,20 @@
-// components/LeadForm.jsx
 "use client";
-
 import { useState } from "react";
 
 export default function LeadForm() {
-  const [loading, setLoading] = useState(false);
-  const [msg, setMsg] = useState(null);
+  const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
 
-  async function onSubmit(e) {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setMsg(null);
-    setLoading(true);
-
-    const form = e.currentTarget;
+    const data = new FormData(e.target);
     const payload = {
-      source: "hero_lead_form",
-      firstName: form.firstName.value.trim(),
-      lastName: form.lastName.value.trim(),
-      email: form.email.value.trim(),
-      company: form.company.value.trim(),
-      roomSize: form.roomSize.value,
-      timeline: form.timeline.value,
-      notes: form.notes.value,
+      name: data.get("name"),
+      email: data.get("email"),
+      facilityType: data.get("facilityType"),
+      status: data.get("status"),
+      timeline: data.get("timeline"),
+      notes: data.get("notes"),
     };
 
     try {
@@ -31,73 +24,57 @@ export default function LeadForm() {
         body: JSON.stringify(payload),
       });
 
-      const json = await res.json().catch(() => ({}));
-      if (!res.ok || !json?.ok) {
-        throw new Error(json?.error || `Request failed: ${res.status}`);
+      if (res.ok) {
+        setSubmitted(true);
+        setError(false);
+        e.target.reset();
+      } else {
+        throw new Error("Form submission failed");
       }
-
-      setMsg({ type: "success", text: "Thanks—your message was sent." });
-      form.reset();
     } catch (err) {
-      setMsg({ type: "error", text: err?.message || "Email could not be sent." });
-    } finally {
-      setLoading(false);
+      console.error("Submission error:", err);
+      setError(true);
     }
-  }
-
-  const inputCls =
-    "border rounded p-2 bg-white text-slate-900 placeholder-slate-500 " +
-    "focus:outline-none focus:ring-2 focus:ring-sky-500 focus:border-sky-500 " +
-    "dark:bg-white dark:text-slate-900";
+  };
 
   return (
-    <form onSubmit={onSubmit} className="grid gap-3 max-w-xl text-slate-900 dark:text-slate-100">
-      <div className="grid grid-cols-2 gap-3">
-        <input name="firstName" placeholder="First name*" required className={inputCls} />
-        <input name="lastName" placeholder="Last name*" required className={inputCls} />
-      </div>
-      <input type="email" name="email" placeholder="Email*" required className={inputCls} />
-      <input name="company" placeholder="Company" className={inputCls} />
-      <select name="roomSize" className={inputCls}>
-        <option value="">Room size</option>
-        <option>Huddle (2–4)</option>
-        <option>Small (4–6)</option>
-        <option>Medium (6–10)</option>
-        <option>Large (10–20)</option>
-        <option>Boardroom / Training</option>
-      </select>
-      <select name="timeline" className={inputCls}>
-        <option value="">Timeline</option>
-        <option>ASAP (0–2 weeks)</option>
-        <option>Soon (2–4 weeks)</option>
-        <option>Planning (1–3 months)</option>
-        <option>Exploring (3+ months)</option>
-      </select>
-      <textarea
-        name="notes"
-        rows={4}
-        placeholder="Anything else we should know?"
-        className={inputCls}
-      />
-      <button
-        type="submit"
-        disabled={loading}
-        className="bg-black text-white rounded p-2 disabled:opacity-60"
-      >
-        {loading ? "Sending…" : "Get my fixed-price quote"}
-      </button>
+    <form onSubmit={handleSubmit} className="space-y-6">
+      {submitted && <p className="text-green-600">Thank you — we'll be in touch soon.</p>}
+      {error && <p className="text-red-600">Something went wrong. Please try again.</p>}
 
-      {msg && (
-        <p
-          className={
-            msg.type === "success"
-              ? "text-green-700 dark:text-green-400"
-              : "text-red-700 dark:text-red-400"
-          }
-        >
-          {msg.text}
-        </p>
-      )}
+      <input type="text" name="name" required placeholder="Your Name" className="w-full p-2 border rounded" />
+      <input type="email" name="email" required placeholder="Your Email" className="w-full p-2 border rounded" />
+
+      <select name="facilityType" required className="w-full p-2 border rounded">
+        <option value="">Facility Type</option>
+        <option value="Cultivation (small)">Cultivation (small &lt;5K sq ft)</option>
+        <option value="Cultivation (large)">Cultivation (large 5K+ sq ft)</option>
+        <option value="Dispensary / Retail">Dispensary / Retail</option>
+        <option value="Processing / Manufacturing">Processing / Manufacturing</option>
+        <option value="Multi-site operation">Multi-site operation</option>
+      </select>
+
+      <select name="status" required className="w-full p-2 border rounded">
+        <option value="">Current Status</option>
+        <option value="Pre-license">Pre-license (no system yet)</option>
+        <option value="Have equipment">Have equipment (need compliance review)</option>
+        <option value="Failed inspection">Failed inspection (need fix)</option>
+        <option value="Expansion">Expansion (adding locations)</option>
+      </select>
+
+      <select name="timeline" required className="w-full p-2 border rounded">
+        <option value="">Timeline</option>
+        <option value="Urgent">&lt;30 days</option>
+        <option value="Soon">30–60 days</option>
+        <option value="Planning">60–90 days</option>
+        <option value="Exploring">No deadline yet</option>
+      </select>
+
+      <textarea name="notes" placeholder="Additional notes (optional)" className="w-full p-2 border rounded" />
+
+      <button type="submit" className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800">
+        Submit
+      </button>
     </form>
   );
 }
