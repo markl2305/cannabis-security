@@ -5,8 +5,16 @@ import LeadForm from "@/components/LeadForm";
 
 /* ---------- Inline Icons (no external deps) ---------- */
 const Icon = ({ children, className = "w-5 h-5" }) => (
-  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"
-       strokeLinecap="round" strokeLinejoin="round" className={className}>
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className={className}
+    aria-hidden="true"
+  >
     {children}
   </svg>
 );
@@ -52,8 +60,8 @@ const FileText = (p) => (
 );
 const Settings = (p) => (
   <Icon {...p}>
-    <path d="M12 15.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z" />
-    <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.65 1.65 0 0 0-1-1.51 1.65 1.65 0 0 0-1.82.33l-.06.06A2 2 0 1 1 4.2 17l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.65 1.65 0 0 0 1.51-1 1.65 1.65 0 0 0-.33-1.82l-.06-.06A2 2 0 1 1 6.04 4.2l.06.06a1.65 1.65 0 0 0 1.82.33h0A1.65 1.65 0 0 0 9.43 3H9.5a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51h0a1.65 1.65 0 0 0 1.82-.33l.06-.06A2 2 0 1 1 19.8 6.04l-.06.06a1.65 1.65 0 0 0-.33 1.82v0A1.65 1.65 0 0 0 21 9.43V9.5a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
+    <circle cx="12" cy="12" r="3.5" />
+    <path d="M19.4 15a1.7 1.7 0 0 0 .39 1.88l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.88-.39 1.7 1.7 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1-1.51 1.7 1.7 0 0 0-1.88.39l-.06.06A2 2 0 1 1 4.2 17l.06-.06a1.7 1.7 0 0 0 .39-1.88 1.7 1.7 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.51-1 1.7 1.7 0 0 0-.39-1.88l-.06-.06A2 2 0 1 1 6.04 4.2l.06.06a1.7 1.7 0 0 0 1.88.39 1.7 1.7 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.51 1.7 1.7 0 0 0 1.88-.39l.06-.06A2 2 0 1 1 19.8 6.04l-.06.06a1.7 1.7 0 0 0-.39 1.88 1.7 1.7 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1z" />
   </Icon>
 );
 const Star = (p) => (
@@ -87,7 +95,11 @@ export default function HomePage() {
       {/* Header */}
       <header className="w-full bg-brand-beige/95 border-b border-brand-sage/40">
         <div className="container-custom px-6 md:px-8 flex items-center justify-between py-3">
-          <Link href="https://callordut.com" className="flex items-center gap-3" aria-label="CalLord Unified Technologies home">
+          <Link
+            href="https://callordut.com"
+            className="flex items-center gap-3"
+            aria-label="CalLord Unified Technologies home"
+          >
             <Image
               src="/logo.png"
               alt="CalLord Unified Technologies"
@@ -186,7 +198,10 @@ export default function HomePage() {
                       className="w-full h-56 md:h-72 object-cover"
                       loading="eager"
                     />
-                    <div className="absolute inset-0 bg-gradient-to-t from-brand-teal/30 to-transparent" aria-hidden="true" />
+                    <div
+                      className="absolute inset-0 bg-gradient-to-t from-brand-teal/30 to-transparent"
+                      aria-hidden="true"
+                    />
                   </div>
                 </figure>
               </div>
@@ -271,7 +286,7 @@ export default function HomePage() {
             <h2 className="text-3xl md:text-4xl font-bold">Three Steps to Compliance Approval</h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             <StepCard
               step="1"
               icon={<Phone />}
@@ -357,9 +372,9 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* Final CTA */}
-      <section className="section-padding bg-gradient-to-b from-brand-teal to-brand-teal/85 text-white text-center">
-        <div className="container-custom max-w-3xl">
+      {/* Final CTA (fully centered wrapper) */}
+      <section className="section-padding bg-gradient-to-b from-brand-teal to-brand-teal/85 text-white">
+        <div className="mx-auto max-w-3xl px-4 text-center">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">
             Your License Deadline Isn’t Flexible. Let’s Make Sure You’re Ready.
           </h2>
@@ -381,21 +396,18 @@ export default function HomePage() {
         </div>
       </section>
 
- {/* Footer */}
-<footer className="bg-white">
-  <div className="mx-auto max-w-5xl px-4 py-8 text-sm text-gray-700 text-center">
-    <div className="mb-2">
-      Licensed &amp; Insured • Colorado • New Mexico • Arizona
-    </div>
-    <div>
-      © {new Date().getFullYear()} CalLord Unified Technologies • Albuquerque, NM •{" "}
-      <a href="tel:+15052261457" className="text-brand-teal font-semibold">
-        (505) 226-1457
-      </a>
-    </div>
-  </div>
-</footer>
-
+      {/* Footer (centered) */}
+      <footer className="bg-white">
+        <div className="mx-auto max-w-5xl px-4 py-8 text-sm text-gray-700 text-center">
+          <div className="mb-2">Licensed &amp; Insured • Colorado • New Mexico • Arizona</div>
+          <div>
+            © {new Date().getFullYear()} CalLord Unified Technologies • Albuquerque, NM •{" "}
+            <a href="tel:+15052261457" className="text-brand-teal font-semibold">
+              (505) 226-1457
+            </a>
+          </div>
+        </div>
+      </footer>
     </main>
   );
 }
@@ -455,7 +467,9 @@ function Objection({ q, a }) {
   return (
     <div className="flex gap-4">
       <div className="flex-shrink-0">
-        <div className="w-12 h-12 bg-brand-teal rounded-full flex items-center justify-center text-white font-bold text-xl">?</div>
+        <div className="w-12 h-12 bg-brand-teal rounded-full flex items-center justify-center text-white font-bold text-xl">
+          ?
+        </div>
       </div>
       <div>
         <h3 className="text-lg font-bold text-gray-900 mb-2">{q}</h3>
