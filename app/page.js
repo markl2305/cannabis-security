@@ -80,9 +80,7 @@ export default function HomePage() {
               Pass Your Cannabis Facility Inspection — First Time, On Schedule
             </h1>
             <p className="text-lg md:text-xl text-white/90">
-              State-compliant security design for Colorado, New Mexico, and
-              Arizona cultivation and dispensary operators. We handle the
-              compliance complexity so you can focus on your license.
+              State-compliant security design for Colorado, New Mexico, and Arizona cultivation and dispensary operators. We handle the compliance complexity so you can focus on your license.
             </p>
           </div>
 
@@ -114,15 +112,17 @@ export default function HomePage() {
               {/* Photo under bullets */}
               <div className="mt-8">
                 <figure className="rounded-xl overflow-hidden shadow-lg shadow-black/20 ring-1 ring-white/10">
-                  <img
+                  <Image
                     src="/images/cannabis-security.jpg"
                     alt="Cannabis facility with compliant security cameras and access control"
+                    width={1600}
+                    height={900}
                     className="w-full h-56 md:h-72 object-cover"
                     loading="eager"
-                    onError={(e) => {
-                      e.target.src =
-                        "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Crect fill='%230f766e' width='1200' height='800'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23fff' font-size='24' font-family='system-ui'%3ECannabis Security System%3C/text%3E%3C/svg%3E";
-                    }}
+                    placeholder="blur"
+                    blurDataURL={
+                      "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Crect fill='%230f766e' width='1200' height='800'/%3E%3Ctext x='50%25' y='50%25' dominant-baseline='middle' text-anchor='middle' fill='%23fff' font-size='24' font-family='system-ui'%3ECannabis Security System%3C/text%3E%3C/svg%3E"
+                    }
                   />
                 </figure>
               </div>
@@ -144,8 +144,7 @@ export default function HomePage() {
               Why Most Cannabis Security Installations Fail Inspection
             </h2>
             <p className="text-gray-600 mt-2">
-              State regulators are strict. These three mistakes account for 80% of
-              compliance failures.
+              State regulators are strict. These three mistakes account for 80% of compliance failures.
             </p>
           </div>
 
@@ -172,9 +171,7 @@ export default function HomePage() {
                 className="rounded-2xl border border-red-200 bg-red-50 p-6 shadow-sm"
               >
                 <div className="text-4xl mb-3">{item.icon}</div>
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  {item.title}
-                </h3>
+                <h3 className="text-xl font-bold text-gray-900 mb-2">{item.title}</h3>
                 <p className="text-gray-700">{item.desc}</p>
               </div>
             ))}
@@ -200,44 +197,37 @@ export default function HomePage() {
             </h2>
           </div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {[
-            {
-              step: "1",
-              title: "Free Assessment Call",
-              time: "30 minutes",
-              desc:
-                "We review your floor plans, current equipment, and state requirements. You get a compliance gap analysis on the call.",
-            },
-            {
-              step: "2",
-              title: "Fixed-Price Quote",
-              time: "48 hours",
-              desc:
-                "We send a detailed scope covering exactly what's needed to pass inspection. You approve before we start.",
-            },
-            {
-              step: "3",
-              title: "Partner-Backed Execution",
-              time: "2-4 weeks",
-              desc:
-                "Our Eagle Eye/Brivo design teams build your system. We manage the install and prep your documentation for regulators.",
-            },
-          ].map((item) => (
-            <div key={item.step} className="text-center">
-              <div className="mx-auto w-16 h-16 rounded-full bg-brand-teal text-white flex items-center justify-center text-2xl font-bold mb-4">
-                {item.step}
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {[
+              {
+                step: "1",
+                title: "Free Assessment Call",
+                time: "30 minutes",
+                desc: "We review your floor plans, current equipment, and state requirements. You get a compliance gap analysis on the call.",
+              },
+              {
+                step: "2",
+                title: "Fixed-Price Quote",
+                time: "48 hours",
+                desc: "We send a detailed scope covering exactly what's needed to pass inspection. You approve before we start.",
+              },
+              {
+                step: "3",
+                title: "Partner-Backed Execution",
+                time: "2-4 weeks",
+                desc: "Our Eagle Eye/Brivo design teams build your system. We manage the install and prep your documentation for regulators.",
+              },
+            ].map((item) => (
+              <div key={item.step} className="text-center">
+                <div className="mx-auto w-16 h-16 rounded-full bg-brand-teal text-white flex items-center justify-center text-2xl font-bold mb-4">
+                  {item.step}
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-1">{item.title}</h3>
+                <p className="text-sm text-brand-teal font-semibold mb-3">{item.time}</p>
+                <p className="text-gray-700">{item.desc}</p>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-1">
-                {item.title}
-              </h3>
-              <p className="text-sm text-brand-teal font-semibold mb-3">
-                {item.time}
-              </p>
-              <p className="text-gray-700">{item.desc}</p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
 
           <div className="mt-10 max-w-2xl mx-auto bg-green-50 border-l-4 border-green-500 p-4 text-center">
             <p className="font-semibold text-gray-900">Our Guarantee</p>
