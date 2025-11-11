@@ -46,7 +46,7 @@ export default function LeadForm() {
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {submitted && (
-        <p className="text-green-600 text-sm">Thank you — we’ll be in touch shortly.</p>
+        <p className="text-white text-sm bg-black/70 p-3 rounded">Thank you — we’ll be in touch shortly.</p>
       )}
       {error && (
         <p className="text-red-600 text-sm">Something went wrong. Please try again.</p>
