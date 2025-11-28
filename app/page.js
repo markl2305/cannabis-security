@@ -86,9 +86,9 @@ export default function HomePage() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
       <header className="bg-white/80 backdrop-blur border-b border-brand-sage/30 sticky top-0 z-30">
-        <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
-          <Link href="https://callordut.com" className="flex items-center gap-3" aria-label="CalLord Unified Technologies home">
-            <Image src="/logo.png" alt="CalLord Unified Technologies" width={200} height={48} className="h-12 w-auto" priority />
+        <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
+          <Link href="https://callordut.com" className="flex items-center gap-4" aria-label="CalLord Unified Technologies home">
+            <Image src="/logo.png" alt="CalLord Unified Technologies" width={320} height={96} className="h-20 w-auto" priority />
           </Link>
           <div className="hidden md:flex items-center gap-3">
             <a
