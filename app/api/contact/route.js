@@ -40,6 +40,11 @@ export async function POST(req) {
     const toAddress =
       process.env.LEAD_TO_EMAIL || "mark@mail.callordut.com";
 
+    const primaryRecipients = [toAddress];
+    if (email) {
+      primaryRecipients.push(email);
+    }
+
     const html = `
       <h2>New Cannabis Security Lead</h2>
       <p><strong>Name:</strong> ${name}</p>
@@ -55,7 +60,7 @@ export async function POST(req) {
 
     const { data, error } = await resend.emails.send({
       from: fromAddress,
-      to: [toAddress],
+      to: primaryRecipients,
       reply_to: email,
       subject: `New Cannabis Security Lead — ${name}`,
       html,
