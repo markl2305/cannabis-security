@@ -40,10 +40,11 @@ export async function POST(req) {
     const toAddress =
       process.env.LEAD_TO_EMAIL || "mark@mail.callordut.com";
 
-    const primaryRecipients = [toAddress];
-    if (email) {
-      primaryRecipients.push(email);
-    }
+    // Always include the owner inbox plus any env override; also send a copy to the submitter.
+    const recipientSet = new Set(
+      [toAddress, "mark@mail.callordut.com", email].filter(Boolean)
+    );
+    const primaryRecipients = Array.from(recipientSet);
 
     const html = `
       <h2>New Cannabis Security Lead</h2>
