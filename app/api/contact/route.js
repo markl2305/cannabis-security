@@ -36,8 +36,7 @@ export async function POST(req) {
     }
 
     const fromAddress =
-      process.env.LEAD_FROM_EMAIL ||
-      "CalLord Unified Technologies <onboarding@resend.dev>";
+      process.env.LEAD_FROM_EMAIL || "mark@mail.callordut.com";
     const toAddress =
       process.env.LEAD_TO_EMAIL || "mark@mail.callordut.com";
 

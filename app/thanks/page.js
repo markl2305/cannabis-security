@@ -33,8 +33,8 @@ export default function ThanksPage() {
         
         <p className="text-gray-600 mt-6 text-sm">
           Need to reach us now?{" "}
-          <a href="tel:+15052261457" className="text-brand-teal font-semibold">
-            Call (505) 226-1457
+          <a href="tel:+18666572383" className="text-brand-teal font-semibold">
+            Call (866) 657-2383
           </a>
         </p>
       </div>

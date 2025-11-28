@@ -108,7 +108,7 @@ export default function LeadForm() {
             required
             autoComplete="tel"
             className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 shadow-sm focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/30"
-            placeholder="(505) 226-1457"
+            placeholder="(866) 657-2383"
           />
         </label>
         <label className="flex flex-col gap-1 text-sm font-medium text-gray-800">
@@ -179,6 +179,20 @@ export default function LeadForm() {
       >
         {isSubmitting ? "Submitting..." : "Send my compliance assessment"}
       </button>
+
+      <p className="text-xs text-gray-600 leading-5">
+        By submitting, you agree to receive calls and text messages (SMS/MMS) about your request.
+        Message and data rates may apply. We do not sell your information. See our{" "}
+        <a
+          href="https://www.callordut.com/privacy"
+          className="font-semibold text-brand-teal underline"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Privacy Policy
+        </a>
+        .
+      </p>
     </form>
   );
 }

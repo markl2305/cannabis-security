@@ -115,11 +115,11 @@ export default function HomePage() {
           </Link>
           <div className="hidden md:flex items-center gap-3">
             <a
-              href="tel:+15052261457"
-              aria-label="Call CalLord Unified Technologies at 505 226 1457"
+              href="tel:+18666572383"
+              aria-label="Call CalLord Unified Technologies at 866 657 2383"
               className="rounded-xl border border-brand-teal/30 px-3 py-2 text-sm font-semibold text-brand-teal hover:bg-brand-teal/10"
             >
-              Call (505) 226-1457
+              Call (866) 657-2383
             </a>
             <Link
               href="#assessment"
@@ -393,8 +393,8 @@ export default function HomePage() {
           </Link>
           <p className="mt-6 text-sm text-white/80">
             Prefer to talk first?{" "}
-            <a href="tel:+15052261457" aria-label="Call CalLord at 505 226 1457" className="underline font-semibold">
-              Call (505) 226-1457
+            <a href="tel:+18666572383" aria-label="Call CalLord at 866 657 2383" className="underline font-semibold">
+              Call (866) 657-2383
             </a>
           </p>
         </div>
@@ -406,8 +406,8 @@ export default function HomePage() {
           <div className="mb-2">Licensed &amp; Insured • Colorado • New Mexico • Arizona</div>
           <div>
             © {new Date().getFullYear()} CalLord Unified Technologies • Albuquerque, NM •{" "}
-            <a href="tel:+15052261457" className="text-brand-teal font-semibold">
-              (505) 226-1457
+            <a href="tel:+18666572383" className="text-brand-teal font-semibold">
+              (866) 657-2383
             </a>
           </div>
         </div>
