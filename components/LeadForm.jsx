@@ -52,6 +52,10 @@ export default function LeadForm() {
         state: payload.state || undefined,
         send_checklist: payload.sendChecklist || undefined,
       });
+      gaEvent("lead_submit_test", {
+        form_id: FORM_ID,
+        form_name: "Cannabis Security Landing",
+      });
     } catch (err) {
       console.error("Form submission error:", err);
       setError(err.message || "Something went wrong. Please try again.");
