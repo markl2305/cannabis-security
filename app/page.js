@@ -6,7 +6,7 @@ import StickyCtaBar from "@/components/StickyCtaBar";
 export const metadata = {
   title: "Cannabis Security Systems | CalLord Unified Technologies",
   description:
-    "Cannabis security designs that pass inspection the first time in NM, CO, AZ, OK, and TX. Book a free compliance assessment.",
+    "Cannabis security designs that pass inspection the first time in NM, CO, and AZ. Book a free compliance assessment.",
   alternates: {
     canonical: "https://security.callordut.com/",
   },
@@ -43,7 +43,7 @@ const faqItems = [
   },
   {
     q: "Which states do you currently support?",
-    a: "New Mexico, Colorado, Arizona, Oklahoma, Texas, and multi-state operators with comparable requirements.",
+    a: "New Mexico, Colorado, Arizona, and multi-state operators with comparable requirements.",
   },
   {
     q: "Can you work with my existing camera or access control system?",
@@ -113,7 +113,7 @@ export default function HomePage() {
         <div className="mx-auto max-w-6xl px-4 py-12 md:py-16 lg:py-20 grid gap-10 lg:grid-cols-2 items-start">
           <div className="space-y-6">
             <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">
-              Cannabis security for NM • CO • AZ • OK • TX
+              Cannabis security for NM • CO • AZ
             </div>
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
@@ -121,7 +121,7 @@ export default function HomePage() {
               </h1>
               <p className="text-lg text-white/85">
                 We design and manage compliant security systems for licensed cannabis facilities in New Mexico, Colorado,
-                Arizona, Oklahoma, and Texas—so you can protect your license and stay focused on operations.
+                and Arizona—so you can protect your license and stay focused on operations.
               </p>
               <ul className="space-y-2 text-white/85">
                 {[
@@ -341,7 +341,7 @@ export default function HomePage() {
 
       <footer className="bg-white border-t border-brand-sage/30">
         <div className="mx-auto max-w-6xl px-4 py-8 text-sm text-slate-700 text-center space-y-1">
-          <div>Licensed &amp; Insured • New Mexico • Colorado • Arizona • Oklahoma • Texas</div>
+          <div>Licensed &amp; Insured • New Mexico • Colorado • Arizona</div>
           <div>
             © {new Date().getFullYear()} CalLord Unified Technologies • Albuquerque, NM •{" "}
             <a href="tel:+18666572383" className="text-brand-teal font-semibold">

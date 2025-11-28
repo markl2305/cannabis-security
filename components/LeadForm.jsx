@@ -164,8 +164,6 @@ export default function LeadForm() {
             <option value="New Mexico">New Mexico</option>
             <option value="Colorado">Colorado</option>
             <option value="Arizona">Arizona</option>
-            <option value="Oklahoma">Oklahoma</option>
-            <option value="Texas">Texas</option>
             <option value="Other">Other</option>
           </select>
         </label>
