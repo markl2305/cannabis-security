@@ -85,7 +85,7 @@ const steps = [
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-white text-slate-900">
-      <header className="bg-white/80 backdrop-blur border-b border-brand-sage/30 sticky top-0 z-30">
+      <header className="bg-brand-beige backdrop-blur border-b border-brand-sage/30 sticky top-0 z-30">
         <div className="mx-auto max-w-6xl px-4 py-4 flex items-center justify-between">
           <Link href="https://callordut.com" className="flex items-center gap-4" aria-label="CalLord Unified Technologies home">
             <Image src="/logo.png" alt="CalLord Unified Technologies" width={320} height={96} className="h-20 w-auto" priority />
@@ -165,7 +165,7 @@ export default function HomePage() {
           <div
             id="consultation-form"
             data-section="primary-lead-form"
-            className="rounded-2xl bg-white text-slate-900 shadow-2xl shadow-black/20 ring-1 ring-white/10"
+            className="rounded-2xl bg-brand-beige text-slate-900 shadow-2xl shadow-black/20 ring-1 ring-brand-sage/30"
           >
             <div className="p-5 md:p-6 lg:p-7">
               <div className="mb-4">
