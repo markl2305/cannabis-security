@@ -77,13 +77,17 @@ const ChevronRight = (p) => (
 
 /* ---------- Metadata ---------- */
 export const metadata = {
-  title: "Cannabis Facility Security Compliance | CalLord Unified Technologies",
+  title: "Cannabis Security Systems | CalLord Unified Technologies",
   description:
-    "State-compliant security design for Colorado, New Mexico, and Arizona cannabis facilities. Pass inspection the first time. Free 30-minute compliance assessment.",
+    "State-compliant cannabis security system design for Colorado, New Mexico, and Arizona operators. Pass inspection the first time with audit-ready documentation.",
+  alternates: {
+    canonical: "https://security.callordut.com/",
+  },
   openGraph: {
-    title: "Cannabis Facility Security Compliance | CalLord Unified Technologies",
+    title: "Cannabis Security Systems | CalLord Unified Technologies",
     description:
-      "State-compliant security design for CO, NM, and AZ. Pass inspection the first time with CalLord UT.",
+      "Compliance-led cannabis security for CO, NM, and AZ facilities with audit-ready documentation and partner-backed installs.",
+    url: "https://security.callordut.com/",
     images: [{ url: "/images/cannabis-security-og.jpg", width: 1200, height: 630 }],
     type: "website",
   },
