@@ -11,13 +11,14 @@ export async function POST(req) {
     const name = body?.name?.trim() || "";
     const email = body?.email?.trim() || "";
     const phone = body?.phone?.trim() || "";
-    const company = body?.company?.trim() || "";
-    const location = body?.location?.trim() || "";
+    const role = body?.role?.trim() || "";
+    const facilityType = body?.facilityType?.trim() || "";
+    const state = body?.state?.trim() || "";
+    const urgency = body?.urgency?.trim() || "";
     const details = body?.details?.trim() || "";
-    const timeline = body?.timeline?.trim() || "";
-    const status = body?.status?.trim() || "";
+    const sendChecklist = Boolean(body?.sendChecklist);
 
-    if (!name || !email || !phone || !company || !location || !details) {
+    if (!name || !email || !phone || !role || !facilityType || !state || !urgency) {
       return NextResponse.json(
         { ok: false, message: "Please complete the required fields." },
         { status: 400 }
@@ -51,11 +52,12 @@ export async function POST(req) {
       <p><strong>Name:</strong> ${name}</p>
       <p><strong>Email:</strong> ${email}</p>
       <p><strong>Phone:</strong> ${phone}</p>
-      <p><strong>Facility / Company:</strong> ${company}</p>
-      <p><strong>City & State:</strong> ${location}</p>
-      <p><strong>Timeline:</strong> ${timeline || "Not provided"}</p>
-      <p><strong>Project Stage:</strong> ${status || "Not provided"}</p>
-      <p><strong>Project Details:</strong><br/>${details.replace(/\n/g, "<br/>")}</p>
+      <p><strong>Role:</strong> ${role}</p>
+      <p><strong>Facility Type:</strong> ${facilityType}</p>
+      <p><strong>State:</strong> ${state}</p>
+      <p><strong>Urgency:</strong> ${urgency}</p>
+      <p><strong>Project Details:</strong><br/>${(details || "Not provided").replace(/\n/g, "<br/>")}</p>
+      <p><strong>Checklist Requested:</strong> ${sendChecklist ? "Yes" : "No"}</p>
       <p><strong>Source:</strong> Cannabis Security Landing (security.callordut.com)</p>
     `;
 

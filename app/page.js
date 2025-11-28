@@ -1,409 +1,347 @@
-// app/page.js
 import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
+import StickyCtaBar from "@/components/StickyCtaBar";
 
-/* ---------- Inline Icons (no external deps) ---------- */
-const Icon = ({ children, className = "w-5 h-5" }) => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className={className}
-    aria-hidden="true"
-  >
-    {children}
-  </svg>
-);
-const CalendarDays = (p) => (
-  <Icon {...p}>
-    <rect x="3" y="4" width="18" height="18" rx="2" />
-    <line x1="16" y1="2" x2="16" y2="6" />
-    <line x1="8" y1="2" x2="8" y2="6" />
-    <line x1="3" y1="10" x2="21" y2="10" />
-    <rect x="7" y="14" width="3" height="3" />
-    <rect x="14" y="14" width="3" height="3" />
-  </Icon>
-);
-const Fingerprint = (p) => (
-  <Icon {...p}>
-    <path d="M12 11a4 4 0 0 1 4 4v2" />
-    <path d="M12 7a8 8 0 0 1 8 8v2" />
-    <path d="M12 15a8 8 0 0 1-8 8" />
-    <path d="M12 3a12 12 0 0 1 12 12v2" />
-    <path d="M2 21a12 12 0 0 0 12-12" />
-  </Icon>
-);
-const AlertTriangle = (p) => (
-  <Icon {...p}>
-    <path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
-    <line x1="12" y1="9" x2="12" y2="13" />
-    <line x1="12" y1="17" x2="12.01" y2="17" />
-  </Icon>
-);
-const Phone = (p) => (
-  <Icon {...p}>
-    <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.86 19.86 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6A19.86 19.86 0 0 1 2.08 4.18 2 2 0 0 1 4 2h3a2 2 0 0 1 2 1.72c.12.86.3 1.7.54 2.5a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.58-1.54a2 2 0 0 1 2.11-.45c.8.24 1.64.42 2.5.54A2 2 0 0 1 22 16.92z" />
-  </Icon>
-);
-const FileText = (p) => (
-  <Icon {...p}>
-    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-    <polyline points="14 2 14 8 20 8" />
-    <line x1="16" y1="13" x2="8" y2="13" />
-    <line x1="16" y1="17" x2="8" y2="17" />
-    <line x1="10" y1="9" x2="8" y2="9" />
-  </Icon>
-);
-const Settings = (p) => (
-  <Icon {...p}>
-    <circle cx="12" cy="12" r="3.5" />
-    <path d="M19.4 15a1.7 1.7 0 0 0 .39 1.88l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.88-.39 1.7 1.7 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1-1.51 1.7 1.7 0 0 0-1.88.39l-.06.06A2 2 0 1 1 4.2 17l.06-.06a1.7 1.7 0 0 0 .39-1.88 1.7 1.7 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.51-1 1.7 1.7 0 0 0-.39-1.88l-.06-.06A2 2 0 1 1 6.04 4.2l.06.06a1.7 1.7 0 0 0 1.88.39 1.7 1.7 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.51 1.7 1.7 0 0 0 1.88-.39l.06-.06A2 2 0 1 1 19.8 6.04l-.06.06a1.7 1.7 0 0 0-.39 1.88 1.7 1.7 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1z" />
-  </Icon>
-);
-const Star = (p) => (
-  <Icon {...p}>
-    <polygon points="12 2 15 9 22 9 17 14 19 21 12 17 5 21 7 14 2 9 9 9 12 2" />
-  </Icon>
-);
-const ChevronRight = (p) => (
-  <Icon {...p}>
-    <polyline points="9 18 15 12 9 6" />
-  </Icon>
-);
-
-/* ---------- Metadata ---------- */
 export const metadata = {
   title: "Cannabis Security Systems | CalLord Unified Technologies",
   description:
-    "State-compliant cannabis security system design for Colorado, New Mexico, and Arizona operators. Pass inspection the first time with audit-ready documentation.",
+    "Cannabis security designs that pass inspection the first time in NM, CO, AZ, OK, and TX. Book a free compliance assessment.",
   alternates: {
     canonical: "https://security.callordut.com/",
   },
   openGraph: {
     title: "Cannabis Security Systems | CalLord Unified Technologies",
     description:
-      "Compliance-led cannabis security for CO, NM, and AZ facilities with audit-ready documentation and partner-backed installs.",
+      "Compliant camera, access control, and monitoring plans for cannabis facilities across the Southwest.",
     url: "https://security.callordut.com/",
     images: [{ url: "/images/cannabis-security-og.jpg", width: 1200, height: 630 }],
     type: "website",
   },
 };
 
+const trustItems = [
+  "Video surveillance design & install",
+  "Access control & intrusion",
+  "Remote monitoring ready",
+  "Locally owned in the Southwest",
+  "Specialized in cannabis facilities",
+];
+
+const faqItems = [
+  {
+    q: "Do you only work with cannabis businesses?",
+    a: "Yes. Our designs and documentation are built for licensed cannabis operators and their regulators.",
+  },
+  {
+    q: "Can you help if I already failed an inspection?",
+    a: "Absolutely. We review inspector notes, correct gaps, and prepare you for a re-inspection with documentation.",
+  },
+  {
+    q: "Do you install the equipment or just design it?",
+    a: "We design and can coordinate installation through trusted partners or your preferred contractors.",
+  },
+  {
+    q: "Which states do you currently support?",
+    a: "New Mexico, Colorado, Arizona, Oklahoma, Texas, and multi-state operators with comparable requirements.",
+  },
+  {
+    q: "Can you work with my existing camera or access control system?",
+    a: "Yes. We assess what you have, reuse where possible, and outline compliant upgrades when needed.",
+  },
+  {
+    q: "How quickly can you get started if my inspection is soon?",
+    a: "We can schedule the assessment quickly and prioritize urgent inspections or failed visits.",
+  },
+  {
+    q: "Can you coordinate with my attorney or compliance consultant?",
+    a: "Yes. We’ll collaborate with your compliance team to align technical controls with legal requirements.",
+  },
+];
+
+const testimonials = [
+  {
+    title: "Client feedback coming soon",
+    body: "We’re in the process of adding anonymized quotes and case summaries from cannabis operators we’ve helped pass inspection. Until then, ask us on your call how our systems have performed under real inspections.",
+  },
+  // TODO: Replace with real client testimonials once available (no fabricated quotes).
+];
+
+const steps = [
+  {
+    title: "Share your facility details",
+    body: "We’ll review your floor plan, license type, and any regulator notes or past inspection reports.",
+  },
+  {
+    title: "We map requirements to your layout",
+    body: "Our team designs or reviews camera, access, and alarm coverage against your state’s rules.",
+  },
+  {
+    title: "You get a clear plan and quote",
+    body: "We provide an implementation roadmap, estimated costs, and next steps for passing inspection.",
+  },
+];
+
 export default function HomePage() {
   return (
-    <main className="min-h-screen text-gray-900">
-      {/* Header */}
-      <header className="w-full bg-brand-beige/95 border-b border-brand-sage/40">
-        <div className="container-custom px-6 md:px-8 flex items-center justify-between py-3">
-          <Link
-            href="https://callordut.com"
-            className="flex items-center gap-3"
-            aria-label="CalLord Unified Technologies home"
-          >
-            <Image
-              src="/logo.png"
-              alt="CalLord Unified Technologies"
-              width={360}
-              height={120}
-              priority
-              className="h-16 md:h-20 w-auto"
-            />
+    <main className="min-h-screen bg-white text-slate-900">
+      <header className="bg-white/80 backdrop-blur border-b border-brand-sage/30 sticky top-0 z-30">
+        <div className="mx-auto max-w-6xl px-4 py-3 flex items-center justify-between">
+          <Link href="https://callordut.com" className="flex items-center gap-3" aria-label="CalLord Unified Technologies home">
+            <Image src="/logo.png" alt="CalLord Unified Technologies" width={200} height={48} className="h-12 w-auto" priority />
           </Link>
           <div className="hidden md:flex items-center gap-3">
             <a
               href="tel:+18666572383"
               aria-label="Call CalLord Unified Technologies at 866 657 2383"
-              className="rounded-xl border border-brand-teal/30 px-3 py-2 text-sm font-semibold text-brand-teal hover:bg-brand-teal/10"
+              className="rounded-lg border border-brand-teal/30 px-3 py-2 text-sm font-semibold text-brand-teal hover:bg-brand-teal/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal/50"
             >
               Call (866) 657-2383
             </a>
-            <Link
-              href="#assessment"
-              className="rounded-xl bg-amber-400 px-4 py-2 text-sm font-semibold text-brand-teal hover:bg-amber-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-400/50"
+            <a
+              href="#consultation-form"
+              className="rounded-lg bg-brand-teal px-4 py-2 text-sm font-semibold text-white hover:bg-brand-teal-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal/60"
             >
-              Get Free Compliance Assessment
-            </Link>
+              Request a Free Compliance Assessment
+            </a>
           </div>
         </div>
       </header>
 
-      {/* Hero */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-brand-teal to-brand-teal/85 text-white">
-        <div className="container-custom px-4 md:px-6 py-10 md:py-16">
-          {/* Trust bar */}
-          <div className="text-center mb-6">
-            <div className="flex flex-wrap justify-center items-center gap-6 text-xs md:text-sm text-white/90">
-              <div className="flex items-center gap-2">
-                <span className="text-xl">✓</span>
-                <span>Trusted by <strong>14</strong> licensed facilities</span>
-              </div>
-              <div className="hidden sm:block w-px h-6 bg-white/30" />
-              <div className="flex items-center gap-2">
-                <span className="text-xl">✓</span>
-                <span>Average approval: <strong>18 days</strong></span>
-              </div>
-              <div className="hidden sm:block w-px h-6 bg-white/30" />
-              <div className="flex items-center gap-2">
-                <span className="text-xl">✓</span>
-                <span><strong>Zero</strong> failed inspections</span>
-              </div>
+      {/* Hero + Form */}
+      <section className="bg-navy-900 text-white">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16 lg:py-20 grid gap-10 lg:grid-cols-2 items-start">
+          <div className="space-y-6">
+            <div className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">
+              Cannabis security for NM • CO • AZ • OK • TX
             </div>
-          </div>
-
-          {/* Headline */}
-          <div className="max-w-5xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-extrabold leading-tight md:leading-tight mb-4">
-              Pass Your Cannabis Facility Inspection — First Time, On Schedule
-            </h1>
-            <p className="text-base md:text-xl text-white/90">
-              State-compliant security design for Colorado, New Mexico, and Arizona cultivation and dispensary operators.
-              We engineer compliant systems so you pass inspection — without delays, rework, or surprise costs.
-            </p>
-          </div>
-
-          {/* Urgency banner */}
-          <div className="mt-6 flex justify-center">
-            <div className="rounded-full bg-red-600/95 px-4 py-2 text-sm font-semibold">
-              ⏰ License deadline approaching? Book your assessment today
-            </div>
-          </div>
-
-          {/* Form row */}
-          <div id="assessment" className="mt-10 grid md:grid-cols-2 gap-10 items-start">
-            {/* Left column */}
-            <div className="order-2 md:order-1 text-white/95">
-              <ul className="space-y-3 text-base md:text-lg leading-7">
+            <div className="space-y-4">
+              <h1 className="text-4xl md:text-5xl font-extrabold leading-tight">
+                Cannabis Security Systems that Pass Inspection the First Time
+              </h1>
+              <p className="text-lg text-white/85">
+                We design and manage compliant security systems for licensed cannabis facilities in New Mexico, Colorado,
+                Arizona, Oklahoma, and Texas—so you can protect your license and stay focused on operations.
+              </p>
+              <ul className="space-y-2 text-white/85">
                 {[
-                  "State-specific compliance roadmap (CO Title 16, NM regulations, AZ requirements)",
-                  "Partner-backed execution through Eagle Eye & Brivo certified teams",
-                  "Fixed-price quotes within 48 hours of assessment call",
-                  "No payment until you approve scope and timeline",
-                ].map((t) => (
-                  <li key={t} className="flex gap-3 pl-1">
-                    <span className="mt-2 h-2 w-2 rounded-full bg-amber-300 shrink-0" />
-                    <span>{t}</span>
+                  "Built to meet state cannabis security regulations",
+                  "Camera, access control, and monitoring that inspectors understand",
+                  "Full documentation so you’re ready for your next inspection",
+                ].map((item) => (
+                  <li key={item} className="flex gap-3">
+                    <span className="mt-1 h-2 w-2 rounded-full bg-brand-teal" />
+                    <span>{item}</span>
                   </li>
                 ))}
               </ul>
-
-              {/* Photo */}
-              <div className="mt-8">
-                <figure className="rounded-xl overflow-hidden shadow-lg shadow-black/20 ring-1 ring-white/10">
-                  <div className="relative">
-                    <Image
-                      src="/images/cannabis-security-hero.jpg"
-                      alt="Cannabis facility with compliant security cameras and access control"
-                      width={1600}
-                      height={900}
-                      className="w-full h-56 md:h-72 object-cover"
-                      loading="eager"
-                    />
-                    <div
-                      className="absolute inset-0 bg-gradient-to-t from-brand-teal/30 to-transparent"
-                      aria-hidden="true"
-                    />
-                  </div>
-                </figure>
-              </div>
-
-              {/* Partner logos */}
-              <div className="mt-6">
-                <p className="text-xs md:text-sm text-white/80 mb-2">Implementation partners</p>
-                <div className="flex items-center gap-6 opacity-95">
-                  <Image
-                    src="/images/logos/eagle-eye-networks.svg"
-                    alt="Eagle Eye Networks Partner"
-                    width={140}
-                    height={36}
-                    className="h-7 w-auto"
-                  />
-                  <Image
-                    src="/images/logos/brivo.svg"
-                    alt="Brivo Partner"
-                    width={110}
-                    height={32}
-                    className="h-6 w-auto"
-                  />
-                </div>
-              </div>
             </div>
+            <div className="flex flex-col sm:flex-row gap-3">
+              <a
+                href="#consultation-form"
+                id="hero-primary-cta"
+                data-cta="hero-primary-compliance-assessment"
+                className="inline-flex items-center justify-center rounded-lg bg-brand-teal px-5 py-3 text-base font-semibold text-white shadow-lg shadow-black/10 hover:bg-brand-teal-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal/70"
+              >
+                Request a Free Compliance Assessment
+              </a>
+              <a
+                href="#checklist-section"
+                id="hero-secondary-checklist"
+                data-cta="hero-secondary-checklist"
+                className="inline-flex items-center justify-center rounded-lg border border-white/40 px-5 py-3 text-base font-semibold text-white hover:bg-white/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/60"
+              >
+                Get the Cannabis Security Checklist
+              </a>
+            </div>
+            <div className="text-sm text-white/70">
+              Prefer to call?{" "}
+              <a href="tel:+18666572383" className="font-semibold text-white underline">
+                (866) 657-2383
+              </a>
+            </div>
+          </div>
 
-            {/* Right column: form */}
-            <div className="order-1 md:order-2">
-              <div className="rounded-xl bg-white shadow-lg shadow-black/10 ring-1 ring-brand-sage/20 p-4 md:p-5">
-                <LeadForm />
+          <div
+            id="consultation-form"
+            data-section="primary-lead-form"
+            className="rounded-2xl bg-white text-slate-900 shadow-2xl shadow-black/20 ring-1 ring-white/10"
+          >
+            <div className="p-5 md:p-6 lg:p-7">
+              <div className="mb-4">
+                <p className="text-xs font-semibold uppercase tracking-wide text-brand-teal">Free consultation</p>
+                <h2 className="text-xl font-bold text-navy-900">Book your compliance assessment</h2>
+                <p className="text-sm text-slate-600">
+                  We’ll review your facility and state requirements, then send a clear plan.
+                </p>
               </div>
+              <LeadForm />
             </div>
           </div>
         </div>
       </section>
 
-      {/* Problem Section */}
-      <section id="problem" className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="text-center mb-8 md:mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900">
-              Why Most Cannabis Security Installations Fail Inspection
-            </h2>
-            <p className="text-gray-700 mt-2">
-              State regulators are strict. These three mistakes account for 80% of compliance failures.
-            </p>
+      {/* Trust band */}
+      <section className="bg-white border-t border-b border-brand-sage/30">
+        <div className="mx-auto max-w-6xl px-4 py-6">
+          <p className="text-xs font-semibold uppercase tracking-wide text-slate-600 text-center mb-3">
+            Trusted by regulated operators &amp; industry vendors
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-3 text-sm text-slate-700">
+            {trustItems.map((item) => (
+              <span key={item} className="rounded-full border border-slate-200 bg-white px-3 py-1 shadow-sm">
+                {item}
+              </span>
+            ))}
           </div>
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-3 gap-6">
-            <CardProblem
-              icon={<CalendarDays className="w-7 h-7" />}
-              title="Wrong Retention Periods"
-              desc="Colorado requires 90 days. Pennsylvania requires 4 years. One size does not fit all—and inspectors know it."
-            />
-            <CardProblem
-              icon={<Fingerprint className="w-7 h-7" />}
-              title="Incomplete Biometric Integration"
-              desc="Your cameras work, but they're not tied to your Metrc system. That's an automatic compliance failure in most states."
-            />
-            <CardProblem
-              icon={<AlertTriangle className="w-7 h-7" />}
-              title="No Redundancy Plan"
-              desc="A single DVR failure = lost footage = lost license. State regulators don't accept 'equipment malfunction' as an excuse."
-            />
+      {/* Who this is for / What you get */}
+      <section className="bg-brand-beige">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+          <div className="grid lg:grid-cols-2 gap-10">
+            <div className="space-y-4">
+              <h2 className="text-3xl font-bold text-navy-900">Built for Licensed Cannabis Operators, Not Generic Retail</h2>
+              <div className="rounded-2xl bg-white p-6 shadow-md">
+                <h3 className="text-lg font-semibold text-navy-900 mb-3">Who this is for</h3>
+                <ul className="space-y-2 text-slate-800">
+                  <li>• Dispensaries preparing for first inspection.</li>
+                  <li>• Cultivation and processing sites that outgrew DIY systems.</li>
+                  <li>• Multi-site operators standardizing across locations.</li>
+                  <li>• Operators burned by generic AV vendors.</li>
+                </ul>
+              </div>
+            </div>
+            <div className="rounded-2xl bg-white p-6 shadow-md space-y-3">
+              <h3 className="text-lg font-semibold text-navy-900">What you get working with CalLord</h3>
+              <ul className="space-y-2 text-slate-800">
+                <li>• Security designs mapped to your state’s cannabis requirements.</li>
+                <li>• Camera, access control, and alarm layouts inspectors can verify.</li>
+                <li>• Documentation you can hand to your regulator.</li>
+                <li>• Coordination with your preferred IT/monitoring providers.</li>
+              </ul>
+            </div>
           </div>
+        </div>
+      </section>
 
-          <div className="mt-8 text-center">
-            <Link
-              href="#assessment"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-amber-400 px-6 py-3 font-semibold text-brand-teal hover:bg-amber-300"
+      {/* What's at stake */}
+      <section className="bg-navy-600 text-white">
+        <div className="mx-auto max-w-5xl px-4 py-12 md:py-14 space-y-6">
+          <h2 className="text-3xl font-bold">What’s at Stake if Your Security Fails Inspection</h2>
+          <p className="text-white/85">
+            Failed inspections can pause operations, trigger fines, and force rushed upgrades under tight deadlines. A clear,
+            compliant plan keeps you moving.
+          </p>
+          <ul className="space-y-2 text-white/85">
+            <li>• Revenue loss during shutdowns</li>
+            <li>• Scrambling to fix issues under inspector pressure</li>
+            <li>• Higher costs when work is rushed</li>
+          </ul>
+          <div className="space-y-3">
+            <h3 className="text-lg font-semibold">A clear security plan now is cheaper than a failed inspection later.</h3>
+            <a
+              href="#consultation-form"
+              data-cta="midpage-talk-to-designer"
+              className="inline-flex items-center justify-center rounded-lg bg-brand-teal px-5 py-3 text-white font-semibold shadow-lg shadow-black/15 hover:bg-brand-teal-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal/70"
             >
-              Let’s Make Sure You’re Covered <ChevronRight className="w-4 h-4" />
-            </Link>
+              Talk to a Cannabis Security Designer
+            </a>
           </div>
         </div>
       </section>
 
-      {/* How We Work */}
-      <section className="section-padding bg-brand-beige">
-        <div className="container-custom">
-          <div className="text-center mb-8 md:mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold">Three Steps to Compliance Approval</h2>
-          </div>
-
-        <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <StepCard
-              step="1"
-              icon={<Phone />}
-              title="Free Assessment Call"
-              time="30 minutes"
-              desc="We review your floor plans, current equipment, and state requirements. You get a compliance gap analysis on the call."
-            />
-            <StepCard
-              step="2"
-              icon={<FileText />}
-              title="Fixed-Price Quote"
-              time="48 hours"
-              desc="We send a detailed scope covering exactly what's needed to pass inspection. You approve before we start."
-            />
-            <StepCard
-              step="3"
-              icon={<Settings />}
-              title="Partner-Backed Execution"
-              time="2–4 weeks"
-              desc="Our Eagle Eye/Brivo design teams build your system. We manage the install and prep your documentation for regulators."
-            />
-          </div>
-
-          <div className="mt-10 max-w-2xl mx-auto bg-green-50 border-l-4 border-green-500 p-4 text-center rounded-md">
-            <p className="font-semibold text-gray-900">Our Guarantee</p>
-            <p className="text-sm text-gray-700 mt-1">
-              If you fail inspection due to our design, we fix it free or refund your fee.
+      {/* Process */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16">
+          <div className="text-center mb-10 space-y-2">
+            <h2 className="text-3xl font-bold text-navy-900">
+              How the Free Cannabis Security Compliance Assessment Works
+            </h2>
+            <p className="text-slate-700">
+              A simple process to make sure your next inspection is straightforward.
             </p>
           </div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {steps.map((step, idx) => (
+              <div key={step.title} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                <div className="flex items-center gap-3 mb-3">
+                  <span className="flex h-10 w-10 items-center justify-center rounded-full bg-brand-teal text-white font-semibold">
+                    {idx + 1}
+                  </span>
+                  <h3 className="text-lg font-semibold text-navy-900">{step.title}</h3>
+                </div>
+                <p className="text-slate-700">{step.body}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-10 text-center">
+            <a
+              href="#consultation-form"
+              data-cta="process-section-start-assessment"
+              className="inline-flex items-center justify-center rounded-lg bg-brand-teal px-6 py-3 text-white font-semibold shadow-lg shadow-black/10 hover:bg-brand-teal-dark focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-teal/70"
+            >
+              Start My Compliance Assessment
+            </a>
+          </div>
         </div>
       </section>
 
-      {/* Testimonials */}
-      <section className="section-padding bg-white">
-        <div className="container-custom">
-          <div className="text-center mb-8 md:mb-10">
-            <h2 className="text-3xl md:text-4xl font-bold">What Cannabis Operators Say</h2>
+      {/* Testimonials placeholder */}
+      <section className="bg-brand-beige">
+        <div className="mx-auto max-w-6xl px-4 py-12 md:py-16 space-y-6">
+          <div className="text-center">
+            <h2 className="text-3xl font-bold text-navy-900">What Our Cannabis Clients Are Saying</h2>
           </div>
+          <div className="grid md:grid-cols-2 gap-6">
+            {testimonials.map((testimonial) => (
+              <div key={testimonial.title} className="rounded-2xl bg-white p-6 shadow-md border border-slate-200">
+                <h3 className="text-lg font-semibold text-navy-900 mb-2">{testimonial.title}</h3>
+                <p className="text-slate-700">{testimonial.body}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-            <Testimonial
-              initials="DG"
-              quote="“Passed Colorado MED inspection on first try. Mark knew exactly what the inspectors would look for.”"
-              location="Operations Manager, Cultivation facility — Denver"
-            />
-            <Testimonial
-              initials="AL"
-              quote="“We were 3 weeks from license deadline and our system wasn’t compliant. Mark got us approved in 12 days.”"
-              location="Owner, Dispensary — Albuquerque"
-            />
-            <Testimonial
-              initials="SP"
-              quote="“Worth every dollar to not deal with the regulatory maze ourselves. System works flawlessly.”"
-              location="Multi-site operator — Phoenix"
-            />
-          </div>
+      {/* Checklist lead magnet */}
+      <section id="checklist-section" className="bg-white">
+        <div className="mx-auto max-w-5xl px-4 py-12 md:py-16 space-y-4">
+          <h2 className="text-3xl font-bold text-navy-900">Get the Cannabis Security Inspection Checklist</h2>
+          <p className="text-slate-700">
+            We’ve created a concise checklist that maps common security requirements for cannabis facilities into a simple,
+            pre-inspection walk-through. It helps you spot obvious gaps before regulators do.
+          </p>
+          <ul className="space-y-2 text-slate-800">
+            <li>• Camera coverage and retention basics</li>
+            <li>• Entry/exit and secure area access control</li>
+            <li>• Monitoring, storage, and documentation essentials</li>
+          </ul>
+          <p className="text-slate-700">
+            Check the box in the form above and we’ll email you the checklist when you request your assessment.
+          </p>
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="section-padding bg-white border-y border-brand-sage/40">
-        <div className="container-custom">
-          <h2 className="text-3xl font-bold text-center mb-12">Common Questions, Answered</h2>
-
-          <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            <Objection
-              q={'"Do you install in my state?"'}
-              a="We currently serve Colorado, New Mexico, and Arizona. If you're expanding to other legal states, we can coordinate through our partner network."
-            />
-            <Objection
-              q={'"How much does this cost?"'}
-              a="Depends on your facility size and current state. Small dispensaries typically run $25K–$50K all-in. Large cultivation operations $100K–$200K. We quote exactly after the assessment call."
-            />
-            <Objection
-              q={'"What if I already have cameras installed?"'}
-              a="We evaluate your existing setup during the assessment call. Often we can integrate what you have and just add compliance layers (biometrics, retention servers, state tracking integration)."
-            />
-            <Objection
-              q={'"Can\'t I just buy equipment and install it myself?"'}
-              a="You can—but if it doesn't meet state-specific retention, resolution, or integration requirements, you'll fail inspection and lose weeks rebuilding. We ensure compliance before equipment is ordered."
-            />
+      <section className="bg-navy-900 text-white">
+        <div className="mx-auto max-w-5xl px-4 py-12 md:py-16 space-y-6">
+          <h2 className="text-3xl font-bold">Cannabis Security: Frequently Asked Questions</h2>
+          <div className="grid md:grid-cols-2 gap-6">
+            {faqItems.map((item) => (
+              <div key={item.q} className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <h3 className="text-lg font-semibold">{item.q}</h3>
+                <p className="text-white/85 mt-2">{item.a}</p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Final CTA (fully centered wrapper) */}
-      <section className="section-padding bg-gradient-to-b from-brand-teal to-brand-teal/85 text-white">
-        <div className="mx-auto max-w-3xl px-4 text-center">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Your License Deadline Isn’t Flexible. Let’s Make Sure You’re Ready.
-          </h2>
-          <p className="text-lg text-white/90 mb-8">
-            30-minute call. No obligation. Fixed-price quote within 48 hours if you want to proceed.
-          </p>
-          <Link
-            href="#assessment"
-            className="inline-flex items-center justify-center gap-2 rounded-xl bg-amber-400 px-8 py-4 text-lg font-semibold text-brand-teal hover:bg-amber-300"
-          >
-            Book Free Compliance Assessment <ChevronRight className="w-5 h-5" />
-          </Link>
-          <p className="mt-6 text-sm text-white/80">
-            Prefer to talk first?{" "}
-            <a href="tel:+18666572383" aria-label="Call CalLord at 866 657 2383" className="underline font-semibold">
-              Call (866) 657-2383
-            </a>
-          </p>
-        </div>
-      </section>
-
-      {/* Footer (centered) */}
-      <footer className="bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-8 text-sm text-gray-700 text-center">
-          <div className="mb-2">Licensed &amp; Insured • Colorado • New Mexico • Arizona</div>
+      <footer className="bg-white border-t border-brand-sage/30">
+        <div className="mx-auto max-w-6xl px-4 py-8 text-sm text-slate-700 text-center space-y-1">
+          <div>Licensed &amp; Insured • New Mexico • Colorado • Arizona • Oklahoma • Texas</div>
           <div>
             © {new Date().getFullYear()} CalLord Unified Technologies • Albuquerque, NM •{" "}
             <a href="tel:+18666572383" className="text-brand-teal font-semibold">
@@ -412,73 +350,8 @@ export default function HomePage() {
           </div>
         </div>
       </footer>
+
+      <StickyCtaBar />
     </main>
-  );
-}
-
-/* ---------- Reusable Components ---------- */
-
-function CardProblem({ icon, title, desc }) {
-  return (
-    <div className="rounded-2xl border border-amber-200 bg-amber-50 p-6 shadow-sm">
-      <div className="text-brand-teal mb-3">{icon}</div>
-      <h3 className="text-xl font-bold text-gray-900 mb-2">{title}</h3>
-      <p className="text-gray-700">{desc}</p>
-    </div>
-  );
-}
-
-function StepCard({ step, icon, title, time, desc }) {
-  return (
-    <div className="text-center">
-      <div className="mx-auto w-16 h-16 rounded-full bg-brand-teal text-white flex items-center justify-center text-2xl font-bold mb-4 relative">
-        {step}
-        <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white text-brand-teal flex items-center justify-center shadow ring-1 ring-brand-sage/30">
-          {icon}
-        </div>
-      </div>
-      <h3 className="text-xl font-bold mb-1">{title}</h3>
-      <p className="text-sm text-brand-teal font-semibold mb-3">{time}</p>
-      <p className="text-gray-700">{desc}</p>
-    </div>
-  );
-}
-
-function Testimonial({ initials, quote, location }) {
-  return (
-    <div className="bg-brand-beige p-6 rounded-lg border-l-4 border-brand-teal shadow-sm">
-      <div className="flex items-center gap-3 mb-3 text-brand-teal">
-        <div className="w-10 h-10 rounded-full bg-brand-teal text-white flex items-center justify-center font-semibold">
-          {initials}
-        </div>
-        <div className="flex items-center text-amber-500" aria-hidden="true">
-          <Star className="w-4 h-4" />
-          <Star className="w-4 h-4" />
-          <Star className="w-4 h-4" />
-          <Star className="w-4 h-4" />
-          <Star className="w-4 h-4" />
-        </div>
-      </div>
-      <p className="text-gray-700 mb-4 italic">{quote}</p>
-      <div className="border-t border-brand-sage pt-4">
-        <p className="text-sm text-gray-600">{location}</p>
-      </div>
-    </div>
-  );
-}
-
-function Objection({ q, a }) {
-  return (
-    <div className="flex gap-4">
-      <div className="flex-shrink-0">
-        <div className="w-12 h-12 bg-brand-teal rounded-full flex items-center justify-center text-white font-bold text-xl">
-          ?
-        </div>
-      </div>
-      <div>
-        <h3 className="text-lg font-bold text-gray-900 mb-2">{q}</h3>
-        <p className="text-gray-700">{a}</p>
-      </div>
-    </div>
   );
 }

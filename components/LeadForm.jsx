@@ -21,11 +21,12 @@ export default function LeadForm() {
       name: data.get("name")?.toString().trim(),
       email: data.get("email")?.toString().trim(),
       phone: data.get("phone")?.toString().trim(),
-      company: data.get("company")?.toString().trim(),
-      location: data.get("location")?.toString().trim(),
-      timeline: data.get("timeline")?.toString(),
-      status: data.get("status")?.toString(),
+      role: data.get("role")?.toString(),
+      facilityType: data.get("facilityType")?.toString(),
+      state: data.get("state")?.toString(),
+      urgency: data.get("urgency")?.toString(),
       details: data.get("details")?.toString().trim(),
+      sendChecklist: data.get("sendChecklist") === "on",
     };
 
     try {
@@ -46,8 +47,10 @@ export default function LeadForm() {
       gaEvent("lead_submit", {
         form_id: FORM_ID,
         form_name: "Cannabis Security Landing",
-        timeline: payload.timeline || undefined,
-        status: payload.status || undefined,
+        urgency: payload.urgency || undefined,
+        facility_type: payload.facilityType || undefined,
+        state: payload.state || undefined,
+        send_checklist: payload.sendChecklist || undefined,
       });
     } catch (err) {
       console.error("Form submission error:", err);
@@ -112,69 +115,103 @@ export default function LeadForm() {
           />
         </label>
         <label className="flex flex-col gap-1 text-sm font-medium text-gray-800">
-          Facility / company *
-          <input
-            type="text"
-            name="company"
-            required
-            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 shadow-sm focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/30"
-            placeholder="Dispensary, cultivation site, etc."
-          />
-        </label>
-        <label className="flex flex-col gap-1 text-sm font-medium text-gray-800">
-          City &amp; state *
-          <input
-            type="text"
-            name="location"
-            required
-            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 shadow-sm focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/30"
-            placeholder="Denver, CO"
-          />
-        </label>
-        <label className="flex flex-col gap-1 text-sm font-medium text-gray-800">
-          Timeline
+          Role *
           <select
-            name="timeline"
+            name="role"
+            required
             className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 shadow-sm focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/30"
             defaultValue=""
           >
-            <option value="">Select timeline (optional)</option>
-            <option value="<30 days">Under 30 days</option>
-            <option value="30-60 days">30–60 days</option>
-            <option value="60-90 days">60–90 days</option>
-            <option value="Exploring">Exploring options</option>
+            <option value="" disabled>
+              Select role
+            </option>
+            <option value="Owner">Owner</option>
+            <option value="Operations Manager">Operations Manager</option>
+            <option value="Compliance Officer">Compliance Officer</option>
+            <option value="Security Director">Security Director</option>
+            <option value="Other">Other</option>
           </select>
         </label>
-        <label className="flex flex-col gap-1 text-sm font-medium text-gray-800 md:col-span-2">
-          Project stage
+        <label className="flex flex-col gap-1 text-sm font-medium text-gray-800">
+          Facility type *
           <select
-            name="status"
+            name="facilityType"
+            required
             className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 shadow-sm focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/30"
             defaultValue=""
           >
-            <option value="">Select stage (optional)</option>
-            <option value="Pre-license">Pre-license (planning system)</option>
-            <option value="In-progress">System in progress</option>
-            <option value="Failed inspection">Failed inspection (need remediation)</option>
-            <option value="Expansion">Expansion / new site</option>
+            <option value="" disabled>
+              Select facility type
+            </option>
+            <option value="Dispensary">Dispensary</option>
+            <option value="Cultivation">Cultivation</option>
+            <option value="Manufacturing/Processing">Manufacturing/Processing</option>
+            <option value="Multi-site Operator">Multi-site Operator</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+        <label className="flex flex-col gap-1 text-sm font-medium text-gray-800">
+          State *
+          <select
+            name="state"
+            required
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 shadow-sm focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/30"
+            defaultValue=""
+          >
+            <option value="" disabled>
+              Select state
+            </option>
+            <option value="New Mexico">New Mexico</option>
+            <option value="Colorado">Colorado</option>
+            <option value="Arizona">Arizona</option>
+            <option value="Oklahoma">Oklahoma</option>
+            <option value="Texas">Texas</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+        <label className="flex flex-col gap-1 text-sm font-medium text-gray-800">
+          Urgency *
+          <select
+            name="urgency"
+            required
+            className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 shadow-sm focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/30"
+            defaultValue=""
+          >
+            <option value="" disabled>
+              Select urgency
+            </option>
+            <option value="Inspection upcoming or failed">I have an inspection coming up or failed one recently</option>
+            <option value="Planning ahead">I am planning ahead / upgrading my security</option>
           </select>
         </label>
       </div>
 
       <label className="flex flex-col gap-1 text-sm font-medium text-gray-800">
-        Project details / notes *
+        What’s your situation? (optional)
         <textarea
           name="details"
-          required
           rows={4}
           className="w-full rounded-lg border border-gray-300 bg-white px-3 py-2 text-gray-900 shadow-sm focus:border-brand-teal focus:outline-none focus:ring-2 focus:ring-brand-teal/30"
-          placeholder="State, license timeline, existing equipment, and any compliance concerns."
+          placeholder="Inspection timing, existing system details, regulator notes, or areas you’re concerned about."
         />
+      </label>
+
+      <label className="flex items-start gap-3 text-sm text-gray-800">
+        <input
+          type="checkbox"
+          name="sendChecklist"
+          className="mt-1 h-4 w-4 rounded border-gray-300 text-brand-teal focus:ring-brand-teal"
+        />
+        <span>
+          Also email me the Cannabis Security Inspection Checklist when you send my assessment.
+        </span>
       </label>
 
       <button
         type="submit"
         disabled={isSubmitting}
+        id="primary-form-submit"
+        data-cta="primary-form-submit"
         className="w-full rounded-lg bg-brand-teal px-4 py-3 text-white font-semibold shadow hover:bg-brand-teal/90 focus:outline-none focus:ring-2 focus:ring-brand-teal/40 disabled:cursor-not-allowed disabled:bg-gray-400"
       >
         {isSubmitting ? "Submitting..." : "Send my compliance assessment"}
