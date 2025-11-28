@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
 import StickyCtaBar from "@/components/StickyCtaBar";
+import ChecklistForm from "@/components/ChecklistForm";
 
 export const metadata = {
   title: "Cannabis Security Systems | CalLord Unified Technologies",
@@ -306,21 +307,25 @@ export default function HomePage() {
       </section>
 
       {/* Checklist lead magnet */}
-      <section id="checklist-section" className="bg-white">
-        <div className="mx-auto max-w-5xl px-4 py-12 md:py-16 space-y-4">
-          <h2 className="text-3xl font-bold text-navy-900">Get the Cannabis Security Inspection Checklist</h2>
-          <p className="text-slate-700">
-            We’ve created a concise checklist that maps common security requirements for cannabis facilities into a simple,
-            pre-inspection walk-through. It helps you spot obvious gaps before regulators do.
-          </p>
-          <ul className="space-y-2 text-slate-800">
-            <li>• Camera coverage and retention basics</li>
-            <li>• Entry/exit and secure area access control</li>
-            <li>• Monitoring, storage, and documentation essentials</li>
-          </ul>
-          <p className="text-slate-700">
-            Check the box in the form above and we’ll email you the checklist when you request your assessment.
-          </p>
+      <section id="checklist-section" className="bg-navy-900 text-white">
+        <div className="mx-auto max-w-5xl px-4 py-12 md:py-16 space-y-6">
+          <div className="space-y-2">
+            <h2 className="text-3xl font-bold">Get the Cannabis Security Checklist</h2>
+            <p className="text-white/85">
+              Lower friction—tell us where you operate and we’ll send the checklist immediately. Coverage &amp; retention
+              basics, entry/exit + secure access control, and monitoring/documentation essentials.
+            </p>
+          </div>
+          <div className="rounded-3xl border border-white/10 bg-white/5 p-6 md:p-8 shadow-xl">
+            <div className="space-y-1 mb-4">
+              <h3 className="text-xl font-semibold">Get the Cannabis Security Checklist</h3>
+              <p className="text-white/80 text-sm">
+                Coverage &amp; retention basics, entry/exit + secure access control, and monitoring/documentation essentials.
+                We’ll send it right after you submit.
+              </p>
+            </div>
+            <ChecklistForm />
+          </div>
         </div>
       </section>
 
