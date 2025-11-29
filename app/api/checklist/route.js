@@ -5,7 +5,8 @@ const resendApiKey = process.env.RESEND_API_KEY;
 const resend = resendApiKey ? new Resend(resendApiKey) : null;
 
 const CHECKLIST_URL =
-  process.env.CHECKLIST_URL || "https://security.callordut.com/images/cannabis-security-checklist.pdf";
+  process.env.CHECKLIST_URL ||
+  "https://security.callordut.com/Cannabis%20Facility%20Security%20Readiness%20Checklist.pdf";
 
 export async function POST(req) {
   try {
