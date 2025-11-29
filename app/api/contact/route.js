@@ -81,6 +81,29 @@ export async function POST(req) {
       );
     }
 
+    // If checklist requested, send the checklist link directly to the requester
+    if (sendChecklist && email) {
+      const checklistUrl =
+        process.env.CHECKLIST_URL ||
+        "https://security.callordut.com/Cannabis%20Facility%20Security%20Readiness%20Checklist.pdf";
+      try {
+        await resend.emails.send({
+          from: fromAddress,
+          to: email,
+          subject: "Your Cannabis Security Checklist",
+          html: `
+            <p>Hi ${name.split(" ")[0] || "there"},</p>
+            <p>Here is your Cannabis Security Readiness Checklist:</p>
+            <p><a href="${checklistUrl}">${checklistUrl}</a></p>
+            <p>If you’d like us to review your facility for compliance, reply here or book a free assessment on our site.</p>
+            <p>— CalLord Unified Technologies</p>
+          `,
+        });
+      } catch (err) {
+        console.error("Checklist send error:", err);
+      }
+    }
+
     return NextResponse.json({ ok: true }, { status: 200 });
   } catch (err) {
     console.error("Email send failed:", err);
